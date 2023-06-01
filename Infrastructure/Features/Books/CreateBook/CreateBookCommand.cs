@@ -13,13 +13,13 @@ using System.Windows.Input;
 
 namespace Infrastructure.Features.Books.CreateBook
 {
-    public class CreateBookCommand : ICommand<Result>
+    public class CreateBookCommand : ICommand<Result<Book>>
     {
         public string Title { get; set; } = default!;
         public string Description { get; set; }
     }
 
-    internal sealed class CreateBookCommandHandler : ICommandHandler<CreateBookCommand, Result>
+    internal sealed class CreateBookCommandHandler : ICommandHandler<CreateBookCommand, Result<Book>>
     {
         private readonly UnitOfWork _unitOfWork;
 
@@ -28,19 +28,21 @@ namespace Infrastructure.Features.Books.CreateBook
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Result> Handle(CreateBookCommand request, CancellationToken cancellationToken)
+        public async Task<Result<Book>> Handle(CreateBookCommand request, CancellationToken cancellationToken)
         {
-            _unitOfWork.Book.Add(new Book
+            var book = new Book
             {
                 Title = request.Title,
                 Description = request.Description,
                 Status = BookStatus.Available
-            });
+            };
+
+            _unitOfWork.Book.Add(book);
 
             try
             {
                 await _unitOfWork.SaveChangesAsync(cancellationToken);
-                return Result.SUCCESS;
+                return book;
             }
             catch (DbUpdateException ex)
             {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Domain.Entities
 {
     [Table("NotificationRequests")]
-    public class NotificationRequest : BaseEntitiy<long>
+    public class NotificationRequest : BaseEntity<long>
     {
         public NotificationEventType NotificationEventType { get; set; }
         public long BookId { get; set; }

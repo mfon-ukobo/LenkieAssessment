@@ -12,6 +12,10 @@ namespace Infrastructure.Database
 {
     internal class DatabaseContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
+        public DatabaseContext(DbContextOptions options) : base(options)
+        {
+        }
+
         public DbSet<Book> Books => Set<Book>();
         public DbSet<Reservation> Reservations => Set<Reservation>();
         public DbSet<NotificationRequest> NotificationRequests => Set<NotificationRequest>();

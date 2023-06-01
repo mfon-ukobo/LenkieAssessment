@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Common
 {
-    public abstract class BaseEntitiy<TKey>
+    public abstract class BaseEntity<TKey>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

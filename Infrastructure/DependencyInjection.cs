@@ -19,7 +19,7 @@ namespace Infrastructure
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<UnitOfWork>();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(DependencyInjection)));
-            services.AddDbContext<DatabaseContext>(cfg => cfg.UseSqlServer(configuration.GetConnectionString("Databsae")));
+            services.AddDbContext<DatabaseContext>(cfg => cfg.UseSqlServer(configuration.GetConnectionString("Database")));
         }
     }
 }

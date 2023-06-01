@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Domain.Entities
 {
     [Table("Books")]
-    public class Book : BaseEntitiy<long>
+    public class Book : BaseEntity<long>
     {
         public string Title { get; set; } = default!;
         public string Description { get; set; } = default!;
