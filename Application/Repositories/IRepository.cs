@@ -13,7 +13,6 @@ namespace Application.Repositories
         void Add(TEntity entity);
         void Remove(TEntity entity);
         void Update(TEntity entity);
-        Task<TEntity> FindAsync();
         Task<TEntity> GetFirstAsync(Expression<Func<TEntity, bool>> predicate);
         IQueryable<TEntity> Where(Expression<Func<TEntity, bool>> predicate);
     }
