@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using OAuth.Configuration;
 using OAuth.Database;
 using Infrastructure;
+using OAuth.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiResources(InMemoryConfig.GetApiResources())
     .AddInMemoryClients(InMemoryConfig.GetClients())
     .AddAspNetIdentity<User>()
+    .AddProfileService<ProfileService>()
     .AddDeveloperSigningCredential(); //not something we want to use in a production environment;
 
 var app = builder.Build();
