@@ -46,7 +46,7 @@ namespace Infrastructure.Features.Books.UpdateBook
 
             try
             {
-                await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.SaveChangesAsync(cancellationToken);
                 return Result.SUCCESS;
             }
             catch (Exception ex)

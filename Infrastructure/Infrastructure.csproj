@@ -25,7 +25,6 @@
     <Folder Include="Features\Books\CheckInBook\" />
     <Folder Include="Features\Books\DeleteBook\" />
     <Folder Include="Features\Reservations\GetReservations\" />
-    <Folder Include="Features\Reservations\CreateReservation\" />
   </ItemGroup>
 
 </Project>
