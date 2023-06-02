@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Database
 {
-    internal class DatabaseContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
+    public class DatabaseContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         public DatabaseContext(DbContextOptions options) : base(options)
         {

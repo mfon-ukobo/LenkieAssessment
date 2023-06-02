@@ -6,6 +6,7 @@ using Infrastructure.Features.Books.GetBook;
 using Infrastructure.Features.Books.GetBooks;
 using Infrastructure.Features.Books.UpdateBook;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BooksController : ControllerBase
     {
         private readonly IMediator _mediator;
