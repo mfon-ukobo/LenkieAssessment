@@ -17,11 +17,15 @@ namespace OAuth.Services
 
         public async Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
+            var claims = new List<Claim>();
+
             var user = await _userManager.GetUserAsync(context.Subject);
+            var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);
 
-            var claims = new List<Claim>();
+            claims.AddRange(userClaims);
             claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+            claims.Add(new Claim("userId", user.Id.ToString()));
 
             context.IssuedClaims.AddRange(claims);
         }

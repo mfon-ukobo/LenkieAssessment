@@ -15,5 +15,7 @@ namespace Domain.Entities
         public NotificationEventType NotificationEventType { get; set; }
         public long BookId { get; set; }
         public Guid CustomerId { get; set; }
+
+        public User Customer { get; set; }
     }
 }

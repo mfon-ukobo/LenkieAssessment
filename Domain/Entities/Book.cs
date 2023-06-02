@@ -15,5 +15,20 @@ namespace Domain.Entities
         public string Title { get; set; } = default!;
         public string Description { get; set; } = default!;
         public BookStatus Status { get; set; }
+
+        public void Reserve()
+        {
+            Status = BookStatus.Reserved;
+        }
+
+        public void Checkout()
+        {
+            Status = BookStatus.CheckedOut;
+        }
+
+        public void Makeavailable()
+        {
+            Status = BookStatus.Available;
+        }
     }
 }

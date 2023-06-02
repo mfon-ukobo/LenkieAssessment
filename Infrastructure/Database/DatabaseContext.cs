@@ -20,5 +20,6 @@ namespace Infrastructure.Database
         public DbSet<Reservation> Reservations => Set<Reservation>();
         public DbSet<NotificationRequest> NotificationRequests => Set<NotificationRequest>();
         public DbSet<CheckOut> CheckOuts => Set<CheckOut>();
+        public DbSet<Notification> Notifications => Set<Notification>();
     }
 }

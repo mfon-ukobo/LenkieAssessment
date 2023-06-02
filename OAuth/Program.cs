@@ -18,7 +18,7 @@ builder.Services.AddIdentity<User, IdentityRole<Guid>>()
     .AddDefaultTokenProviders();
 
 builder.Services.AddIdentityServer()
-    //.AddInMemoryIdentityResources(InMemoryConfig.GetIdentityResources())
+    .AddInMemoryIdentityResources(InMemoryConfig.GetIdentityResources())
     .AddInMemoryApiScopes(InMemoryConfig.GetApiScopes())
     .AddInMemoryApiResources(InMemoryConfig.GetApiResources())
     .AddInMemoryClients(InMemoryConfig.GetClients())

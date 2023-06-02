@@ -22,11 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Books\CreateBookNotification\" />
-    <Folder Include="Features\Books\CheckOutBook\" />
     <Folder Include="Features\Books\CheckInBook\" />
     <Folder Include="Features\Books\DeleteBook\" />
-    <Folder Include="Features\Reservations\GetReservations\" />
   </ItemGroup>
 
 </Project>

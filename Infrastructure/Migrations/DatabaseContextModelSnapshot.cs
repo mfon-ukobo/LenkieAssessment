@@ -43,7 +43,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.CheckOut", b =>
@@ -71,7 +71,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CheckOuts");
+                    b.ToTable("CheckOuts", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.NotificationRequest", b =>
@@ -93,7 +93,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NotificationRequests");
+                    b.ToTable("NotificationRequests", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Reservation", b =>
@@ -110,15 +110,15 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("ReservationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ReservationEndDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Reservations");
+                    b.ToTable("Reservations", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>

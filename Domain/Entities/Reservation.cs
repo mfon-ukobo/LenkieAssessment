@@ -9,5 +9,6 @@ namespace Domain.Entities
         public long BookId { get; set; }
         public Guid CustomerId { get; set; }
         public DateTime ReservationDate { get; set; }
+        public DateTime ReservationEndDate { get; set; }
     }
 }
