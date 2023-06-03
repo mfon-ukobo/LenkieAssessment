@@ -3,7 +3,7 @@ GO
 
 USE [Lenkie]
 GO
-
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -17,7 +17,7 @@ CREATE TABLE [dbo].[__EFMigrationsHistory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -33,7 +33,7 @@ CREATE TABLE [dbo].[AspNetRoleClaims](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -49,7 +49,7 @@ CREATE TABLE [dbo].[AspNetRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -65,7 +65,7 @@ CREATE TABLE [dbo].[AspNetUserClaims](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -82,7 +82,7 @@ CREATE TABLE [dbo].[AspNetUserLogins](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -97,7 +97,7 @@ CREATE TABLE [dbo].[AspNetUserRoles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -127,7 +127,7 @@ CREATE TABLE [dbo].[AspNetUsers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -145,7 +145,7 @@ CREATE TABLE [dbo].[AspNetUserTokens](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Books]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[Books]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -161,7 +161,7 @@ CREATE TABLE [dbo].[Books](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CheckOuts]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[CheckOuts]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -179,7 +179,7 @@ CREATE TABLE [dbo].[CheckOuts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NotificationRequests]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[NotificationRequests]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -195,7 +195,7 @@ CREATE TABLE [dbo].[NotificationRequests](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Notifications]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[Notifications]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -212,7 +212,7 @@ CREATE TABLE [dbo].[Notifications](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Reservations]    Script Date: 03/06/2023 18:32:03 ******/
+/****** Object:  Table [dbo].[Reservations]    Script Date: 03/06/2023 19:41:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -235,13 +235,21 @@ INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N
 GO
 SET IDENTITY_INSERT [dbo].[AspNetRoleClaims] ON 
 GO
-INSERT [dbo].[AspNetRoleClaims] ([Id], [RoleId], [ClaimType], [ClaimValue]) VALUES (1, N'0e356008-e1c7-4998-bb2a-03e7d0928cd0', N'scope', N'read:users')
+INSERT [dbo].[AspNetRoleClaims] ([Id], [RoleId], [ClaimType], [ClaimValue]) VALUES (1, N'0e356008-e1c7-4998-bb2a-03e7d0928cd0', N'permissions', N'read:users')
 GO
-INSERT [dbo].[AspNetRoleClaims] ([Id], [RoleId], [ClaimType], [ClaimValue]) VALUES (2, N'0e356008-e1c7-4998-bb2a-03e7d0928cd0', N'scope', N'write:users')
+INSERT [dbo].[AspNetRoleClaims] ([Id], [RoleId], [ClaimType], [ClaimValue]) VALUES (2, N'0e356008-e1c7-4998-bb2a-03e7d0928cd0', N'permissions', N'write:users')
+GO
+INSERT [dbo].[AspNetRoleClaims] ([Id], [RoleId], [ClaimType], [ClaimValue]) VALUES (3, N'0e356008-e1c7-4998-bb2a-03e7d0928cd1', N'permissions', N'read:books')
+GO
+INSERT [dbo].[AspNetRoleClaims] ([Id], [RoleId], [ClaimType], [ClaimValue]) VALUES (5, N'0e356008-e1c7-4998-bb2a-03e7d0928cd0', N'permissions', N'read:books')
+GO
+INSERT [dbo].[AspNetRoleClaims] ([Id], [RoleId], [ClaimType], [ClaimValue]) VALUES (6, N'0e356008-e1c7-4998-bb2a-03e7d0928cd0', N'permissions', N'write:books')
 GO
 SET IDENTITY_INSERT [dbo].[AspNetRoleClaims] OFF
 GO
 INSERT [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'0e356008-e1c7-4998-bb2a-03e7d0928cd0', N'Admin', N'ADMIN', N'0e356008-e1c7-4998-bb2a-03e7d0928cd0')
+GO
+INSERT [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'0e356008-e1c7-4998-bb2a-03e7d0928cd1', N'Customer', N'CUSTOMER', N'0e356008-e1c7-4998-bb2a-03e7d0928cd1')
 GO
 SET IDENTITY_INSERT [dbo].[AspNetUserClaims] ON 
 GO
@@ -257,7 +265,11 @@ SET IDENTITY_INSERT [dbo].[AspNetUserClaims] OFF
 GO
 INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'0e356008-e1c7-4998-bb2a-03e7d0928cd0', N'0e356008-e1c7-4998-bb2a-03e7d0928cd0')
 GO
-INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount], [IsActive]) VALUES (N'0e356008-e1c7-4998-bb2a-03e7d0928cd0', N'Mfon', N'Ukobo', N'mfon@mailinator.com', N'MFON@MAILINATOR.COM', N'mfon@mailinator.com', N'MFON@MAILINATOR.COM', 1, N'AQAAAAIAAYagAAAAEM7j5ZQBziAv+PX0q6pF0bQmffd8wEH2eC2O31vCib68J6JkpqVxE7Ii79sEKsSXaA==', N'HIQNC3AJZFJBURQ3GUNPDL2HBQBM4P7P', N'77d84b28-42b4-4f08-ac09-3883750e1cdd', N'0', 1, 0, NULL, 0, 0, 0)
+INSERT [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'0e356008-e1c7-4998-bb2a-03e7d0928cd1', N'0e356008-e1c7-4998-bb2a-03e7d0928cd1')
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount], [IsActive]) VALUES (N'0e356008-e1c7-4998-bb2a-03e7d0928cd0', N'Mfon', N'Ukobo', N'mfon@mailinator.com', N'MFON@MAILINATOR.COM', N'mfon@mailinator.com', N'MFON@MAILINATOR.COM', 1, N'AQAAAAIAAYagAAAAEM7j5ZQBziAv+PX0q6pF0bQmffd8wEH2eC2O31vCib68J6JkpqVxE7Ii79sEKsSXaA==', N'HIQNC3AJZFJBURQ3GUNPDL2HBQBM4P7P', N'77d84b28-42b4-4f08-ac09-3883750e1cdd', N'0', 1, 0, NULL, 0, 0, 1)
+GO
+INSERT [dbo].[AspNetUsers] ([Id], [FirstName], [LastName], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount], [IsActive]) VALUES (N'0e356008-e1c7-4998-bb2a-03e7d0928cd1', N'Customer', N'One', N'customer@mailinator.com', N'CUSTOMER@MAILINATOR.COM', N'customer@mailinator.com', N'CUSTOMER@MAILINATOR.COM', 1, N'AQAAAAIAAYagAAAAEM7j5ZQBziAv+PX0q6pF0bQmffd8wEH2eC2O31vCib68J6JkpqVxE7Ii79sEKsSXaA==', N'A', N'0e356008-e1c7-4998-bb2a-03e7d0928cd1', N'0', 1, 0, NULL, 0, 0, 1)
 GO
 SET IDENTITY_INSERT [dbo].[Books] ON 
 GO
