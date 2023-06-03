@@ -19,7 +19,7 @@ namespace Domain.Entities
                 .WithMany()
                 .HasForeignKey(x => x.BookId);
 
-            builder.HasOne<Customer>()
+            builder.HasOne(x => x.Customer)
                 .WithMany()
                 .HasForeignKey(x => x.CustomerId);
         }

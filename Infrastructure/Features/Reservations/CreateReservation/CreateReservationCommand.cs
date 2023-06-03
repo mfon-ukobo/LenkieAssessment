@@ -1,5 +1,6 @@
 ﻿using Application.Mediator;
 using Domain.Entities;
+using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Infrastructure.Features.Reservations.CreateReservation
     internal sealed class CreateReservationCommandHandler : ICommandHandler<CreateReservationCommand, Result<Reservation>>
     {
         private readonly UnitOfWork _unitOfWork;
+        private const int RESERVATION_DURATION_DAYS = 2;
 
         public CreateReservationCommandHandler(UnitOfWork unitOfWork)
         {
@@ -33,33 +35,30 @@ namespace Infrastructure.Features.Reservations.CreateReservation
         public async Task<Result<Reservation>> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
             var book = await _unitOfWork.Book.GetFirstAsync(x => x.Id == request.Payload.BookId);
-            if (book.Status == Domain.Enums.BookStatus.CheckedOut)
+            if (book.Status == BookStatus.CheckedOut)
             {
                 return new Error("This book has been checked out. You can request to be notified when this book becomes available");
             }
 
-            var reservation = await CheckExistingReservation(Guid.NewGuid(), request.Payload.BookId);
-            if (reservation is not null)
+            if (book.Status == BookStatus.Reserved)
             {
                 return new Error("A reservation already exists for this book. You can request to be notified when this book becomes available");
             }
 
-            reservation = new Reservation
+            var reservation = new Reservation
             {
                 BookId = request.Payload.BookId,
+                CustomerId = Guid.NewGuid(),
+                ReservationDate = DateTime.UtcNow,
+                ReservationEndDate = DateTime.UtcNow.AddDays(RESERVATION_DURATION_DAYS)
             };
-
             _unitOfWork.Reservation.Add(reservation);
+
+            book.Reserve(); // change the book status
+
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             return reservation;
-        }
-
-        private async Task<Reservation> CheckExistingReservation(Guid customerId, long bookId)
-        {
-            return await _unitOfWork.Reservation
-                .GetFirstAsync(x => x.CustomerId == customerId 
-                    && x.BookId == bookId);
         }
     }
 }

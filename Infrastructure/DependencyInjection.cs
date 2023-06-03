@@ -1,6 +1,9 @@
 ﻿using Application.Repositories;
+using Domain.Entities;
 using Infrastructure.Database;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +23,9 @@ namespace Infrastructure
             services.AddScoped<UnitOfWork>();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(DependencyInjection)));
             services.AddDbContext<DatabaseContext>(cfg => cfg.UseSqlServer(configuration.GetConnectionString("Database")));
+            services.AddIdentityCore<User>()
+                .AddEntityFrameworkStores<DatabaseContext>()
+                .AddDefaultTokenProviders();
         }
     }
 }

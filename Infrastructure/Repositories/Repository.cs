@@ -28,6 +28,11 @@ namespace Infrastructure.Repositories
             _dbSet.Add(entity);
         }
 
+        public void AddRange(IEnumerable<TEntity> entities)
+        {
+            _dbSet.AddRange(entities);
+        }
+
         public IQueryable<TEntity> GetAll()
         {
             return _dbSet.AsQueryable();

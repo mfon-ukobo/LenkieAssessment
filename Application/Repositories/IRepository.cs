@@ -11,6 +11,7 @@ namespace Application.Repositories
     {
         IQueryable<TEntity> GetAll();
         void Add(TEntity entity);
+        void AddRange(IEnumerable<TEntity> entity);
         void Remove(TEntity entity);
         void Update(TEntity entity);
         Task<TEntity> GetFirstAsync(Expression<Func<TEntity, bool>> predicate);

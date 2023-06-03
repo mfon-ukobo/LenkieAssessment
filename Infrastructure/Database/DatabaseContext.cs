@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Database
 {
-    internal class DatabaseContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
+    public class DatabaseContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         public DatabaseContext(DbContextOptions options) : base(options)
         {
@@ -20,5 +20,6 @@ namespace Infrastructure.Database
         public DbSet<Reservation> Reservations => Set<Reservation>();
         public DbSet<NotificationRequest> NotificationRequests => Set<NotificationRequest>();
         public DbSet<CheckOut> CheckOuts => Set<CheckOut>();
+        public DbSet<Notification> Notifications => Set<Notification>();
     }
 }

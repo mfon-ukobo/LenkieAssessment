@@ -64,5 +64,10 @@ namespace Infrastructure.Common
         {
             return await PagedList<T>.ToPagedListAsync(items, filter.Page, filter.Size);
         }
+
+        public static PagedList<T> ToPagedList<T>(this IEnumerable<T> items, QueryFilter filter) where T : class
+        {
+            return PagedList<T>.ToPagedList(items, filter.Page, filter.Size);
+        }
     }
 }

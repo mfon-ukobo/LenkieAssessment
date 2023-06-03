@@ -22,6 +22,7 @@ namespace Infrastructure
             Reservation = new Repository<Reservation>(context);
             NotificationRequest = new Repository<NotificationRequest>(context);
             CheckOut = new Repository<CheckOut>(context);
+            Notification = new Repository<Notification>(context);
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -33,5 +34,6 @@ namespace Infrastructure
         public IRepository<Reservation> Reservation;
         public IRepository<NotificationRequest> NotificationRequest;
         public IRepository<CheckOut> CheckOut;
+        public IRepository<Notification> Notification;
     }
 }

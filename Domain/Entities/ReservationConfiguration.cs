@@ -12,14 +12,13 @@ namespace Domain.Entities
     {
         public void Configure(EntityTypeBuilder<Reservation> builder)
         {
-            builder.HasIndex(x => new { x.BookId, x.CustomerId })
-                .HasFilter($"[{nameof(Reservation.IsActive)} = True]");
+            builder.HasIndex(x => new { x.BookId, x.CustomerId });
 
             builder.HasOne<Book>()
                 .WithMany()
                 .HasForeignKey(x => x.BookId);
 
-            builder.HasOne<Customer>()
+            builder.HasOne<User>()
                 .WithMany()
                 .HasForeignKey(x => x.CustomerId);
 

@@ -1,11 +1,15 @@
-﻿using Domain.Entities;
+﻿using Domain;
+using Domain.Entities;
 using Infrastructure;
 using Infrastructure.Common;
+using Infrastructure.Features.Books.CheckInBook;
+using Infrastructure.Features.Books.CheckOutBook;
 using Infrastructure.Features.Books.CreateBook;
 using Infrastructure.Features.Books.GetBook;
 using Infrastructure.Features.Books.GetBooks;
 using Infrastructure.Features.Books.UpdateBook;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +17,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BooksController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -65,6 +70,7 @@ namespace WebApi.Controllers
         [HttpPut("{id:long}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(typeof(Error), 400)]
+        [Authorize(Scopes.WriteBooks)]
         public async Task<IActionResult> UpdateBook(long id, UpdateBookRequest request)
         {
             var command = new UpdateBookCommand(id, request);
@@ -81,11 +87,44 @@ namespace WebApi.Controllers
         [HttpPost("")]
         [ProducesResponseType(typeof(Book), 200)]
         [ProducesResponseType(typeof(Error), 400)]
+        [Authorize(Scopes.WriteBooks)]
         public async Task<IActionResult> CreateBook(CreateBookCommand request)
         {
             var result = await _mediator.Send(request);
 
             return result.Handle<IActionResult>(Ok, BadRequest);
+        }
+
+        /// <summary>
+        /// Checks Out a Book
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost("{id:long}/check-out")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(typeof(Error), 400)]
+        public async Task<IActionResult> CheckOut(CheckOutBookRequest request)
+        {
+            var command = new CheckOutBookCommand(User.Identity.Name, request);
+            var result = await _mediator.Send(command);
+
+            return result.Handle<IActionResult>(NoContent, BadRequest);
+        }
+
+
+        /// <summary>
+        /// Checks In a book
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost("{id:long}/check-in")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(typeof(Error), 400)]
+        public async Task<IActionResult> CheckIn(CheckInBookCommand request)
+        {
+            var result = await _mediator.Send(request);
+
+            return result.Handle<IActionResult>(NoContent, BadRequest);
         }
     }
 }
