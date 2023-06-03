@@ -27,6 +27,12 @@ namespace WebApi.Controllers
         /// <summary>
         /// Gets customers
         /// </summary>
+        /// <remarks>
+        /// Sample Request
+        ///     
+        ///     GET /Customers?page=1&&size=20
+        ///     
+        /// </remarks>
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
@@ -40,6 +46,18 @@ namespace WebApi.Controllers
         /// <summary>
         /// Creates a customer
         /// </summary>
+        /// <remarks> 
+        /// Sample Request
+        ///
+        ///     POST /Customers
+        ///     {
+        ///         firstName: Mfon,
+        ///         lastName: Ukobo,
+        ///         email: coache1234@gmail.com,
+        ///         password: Password
+        ///     }
+        ///     
+        /// </remarks>
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
@@ -54,6 +72,16 @@ namespace WebApi.Controllers
         /// <summary>
         /// Updates a customer
         /// </summary>
+        /// <remarks>
+        /// Sample Request
+        /// 
+        ///     PUT /Customers/1
+        ///     {
+        ///         firstName: Mfon,
+        ///         lastName: Ukobo,
+        ///         email: coache1234@gmail.com,
+        ///     }
+        /// </remarks>
         /// <param name="id"></param>
         /// <param name="request"></param>
         /// <returns></returns>

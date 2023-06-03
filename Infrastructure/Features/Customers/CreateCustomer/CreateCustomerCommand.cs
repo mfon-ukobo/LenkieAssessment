@@ -46,9 +46,9 @@ namespace Infrastructure.Features.Customers.CreateCustomer
             }
 
             var addToRoleResult = await _userManager.AddToRoleAsync(user, Roles.Customer);
-
             if (!addToRoleResult.Succeeded)
             {
+                await _userManager.DeleteAsync(user);
                 return new Error(addToRoleResult.Errors.Select(x => x.Description));
             }
 

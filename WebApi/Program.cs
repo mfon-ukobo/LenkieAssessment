@@ -4,6 +4,8 @@ using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Logging;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 using WebApi;
 using WebApi.Authorization;
 
@@ -15,7 +17,20 @@ IdentityModelEventSource.ShowPII = true;
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Library API",
+        Description = "A web APi for managing check out and check in of books"
+    });
+
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
+
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddAuthentication()
     .AddJwtBearer(opt =>

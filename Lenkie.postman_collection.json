@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "eccb0989-20f4-465c-91ef-d8bef0c95c70",
+		"name": "Lenkie",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "11276247",
+		"_collection_link": "https://bold-comet-160040.postman.co/workspace/Maxfront~eac852ed-bd8c-4ce0-aefe-ef2a68e8e26e/collection/11276247-eccb0989-20f4-465c-91ef-d8bef0c95c70?action=share&creator=11276247&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Get OAuth Configurations",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "web_app",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "lenkie_secret",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Martha",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "MarthaPassword",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "openid profile",
+							"type": "text"
+						}
+					]
+				},
+				"url": "{{identityUrl}}/.well-known/openid-configuration"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set(\"token\", pm.response.json().access_token);\r",
+							"console.log(pm.response.toJSON());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "web_app",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "client_secret",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "customer@mailinator.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Password@1234",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "openid profile",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": "{{identityUrl}}/connect/token"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://localhost:7169/connect/userinfo"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/books"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reservations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/reservations"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{token}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:7212/api",
+			"type": "string"
+		},
+		{
+			"key": "identityUrl",
+			"value": "https://localhost:7169",
+			"type": "string"
+		}
+	]
+}
