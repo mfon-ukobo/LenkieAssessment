@@ -4,7 +4,7 @@ namespace WebApi.Authorization
 {
     public class HasScopeRequirement : IAuthorizationRequirement
     {
-        public string Scope { get; set; }
+        public string Scope { get; }
 
         public HasScopeRequirement(string scope)
         {

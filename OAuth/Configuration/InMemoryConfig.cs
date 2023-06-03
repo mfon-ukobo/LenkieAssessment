@@ -3,6 +3,7 @@ using IdentityServer4.Test;
 using IdentityServer4;
 using System.Security.Claims;
 using static IdentityServer4.IdentityServerConstants;
+using Domain;
 
 namespace OAuth.Configuration
 {
@@ -17,7 +18,10 @@ namespace OAuth.Configuration
 
         public static IEnumerable<ApiScope> GetApiScopes() =>
            new List<ApiScope> {
-               new ApiScope("library_api", "Read API Scope")
+               new ApiScope(Scopes.ReadBooks, "Read Books"),
+               new ApiScope(Scopes.WriteBooks, "Create, Update & Delete Books"),
+               new ApiScope(Scopes.ReadUsers, "Read Users"),
+               new ApiScope(Scopes.WriteUsers, "Create, Update & Delete Users"),
            };
 
         public static IEnumerable<ApiResource> GetApiResources() =>
@@ -25,7 +29,7 @@ namespace OAuth.Configuration
             {
                new ApiResource("library_api", "Library API")
                {
-                   Scopes = { "library_api" }
+                   Scopes = { Scopes.ReadBooks, Scopes.WriteBooks, Scopes.ReadUsers, Scopes.WriteUsers }
                }
             };
 
@@ -37,7 +41,7 @@ namespace OAuth.Configuration
                     ClientId = "web_app",
                     ClientSecrets = new [] { new Secret("client_secret".Sha512()) },
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                    AllowedScopes = { StandardScopes.OpenId, "library_api" },
+                    AllowedScopes = { StandardScopes.OpenId, Scopes.ReadBooks, Scopes.WriteBooks, Scopes.ReadUsers, Scopes.WriteUsers },
                }
             };
     }

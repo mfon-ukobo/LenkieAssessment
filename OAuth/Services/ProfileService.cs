@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using IdentityModel;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
@@ -24,7 +25,8 @@ namespace OAuth.Services
             var roles = await _userManager.GetRolesAsync(user);
 
             claims.AddRange(userClaims);
-            //claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+            claims.Add(new Claim(ClaimTypes.Name, user.UserName));
 
             context.IssuedClaims.AddRange(claims);
         }

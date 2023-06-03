@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain;
+using Domain.Entities;
 using Infrastructure;
 using Infrastructure.Common;
 using Infrastructure.Features.Books.CheckInBook;
@@ -16,7 +17,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Policies.PublicSecure)]
+    [Authorize]
     public class BooksController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -69,6 +70,7 @@ namespace WebApi.Controllers
         [HttpPut("{id:long}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(typeof(Error), 400)]
+        [Authorize(Scopes.WriteBooks)]
         public async Task<IActionResult> UpdateBook(long id, UpdateBookRequest request)
         {
             var command = new UpdateBookCommand(id, request);
@@ -85,6 +87,7 @@ namespace WebApi.Controllers
         [HttpPost("")]
         [ProducesResponseType(typeof(Book), 200)]
         [ProducesResponseType(typeof(Error), 400)]
+        [Authorize(Scopes.WriteBooks)]
         public async Task<IActionResult> CreateBook(CreateBookCommand request)
         {
             var result = await _mediator.Send(request);

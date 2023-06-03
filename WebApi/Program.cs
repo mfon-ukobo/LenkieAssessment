@@ -1,6 +1,8 @@
+using Domain;
 using Domain.Entities;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Logging;
 using WebApi;
 using WebApi.Authorization;
@@ -26,7 +28,13 @@ builder.Services.AddAuthentication()
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy(Policies.PublicSecure, policy => policy.RequireClaim("client_id"));
+    options.AddPolicy(Scopes.ReadBooks, policy => policy.AddRequirements(new HasScopeRequirement(Scopes.ReadBooks)));
+    options.AddPolicy(Scopes.WriteBooks, policy => policy.Requirements.Add(new HasScopeRequirement(Scopes.WriteBooks)));
+    options.AddPolicy(Scopes.ReadUsers, policy => policy.Requirements.Add(new HasScopeRequirement(Scopes.ReadUsers)));
+    options.AddPolicy(Scopes.WriteUsers, policy => policy.Requirements.Add(new HasScopeRequirement(Scopes.WriteUsers)));
 });
+
+builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
 var app = builder.Build();
 
@@ -42,6 +50,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers().RequireAuthorization(Policies.PublicSecure);
 
 app.Run();
