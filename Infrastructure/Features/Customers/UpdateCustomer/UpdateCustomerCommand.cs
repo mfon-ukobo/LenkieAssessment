@@ -22,13 +22,6 @@ namespace Infrastructure.Features.Customers.UpdateCustomer
         public UpdateCustomerRequest Payload { get; set; }
     }
 
-    public class UpdateCustomerRequest
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-    }
-
     internal sealed class UpdateCustomerCommandHandler : ICommandHandler<UpdateCustomerCommand, Result>
     {
         private readonly UserManager<User> _userManager;
@@ -49,6 +42,7 @@ namespace Infrastructure.Features.Customers.UpdateCustomer
             user.FirstName = request.Payload.FirstName;
             user.LastName = request.Payload.LastName;
             user.Email = request.Payload.Email;
+            user.IsActive = request.Payload.IsActive;
 
             var updateuserResult = await _userManager.UpdateAsync(user);
             if (!updateuserResult.Succeeded)
