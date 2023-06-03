@@ -23,9 +23,8 @@ namespace OAuth.Services
             var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);
 
-            claims.AddRange(userClaims);
-            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
-            claims.Add(new Claim("userId", user.Id.ToString()));
+            //claims.AddRange(userClaims);
+            //claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             context.IssuedClaims.AddRange(claims);
         }

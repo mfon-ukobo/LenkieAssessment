@@ -37,7 +37,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(typeof(PagedList<Reservation>), 200)]
         [ProducesResponseType(typeof(Error), 400)]
         [Authorize(Scopes.ReadBooks)]
-        public async Task<IActionResult> GetReservation(GetReservationsQuery request)
+        public async Task<IActionResult> GetReservations(GetReservationsQuery request)
         {
             var result = await _mediator.Send(request);
 

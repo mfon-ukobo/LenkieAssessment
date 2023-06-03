@@ -20,7 +20,7 @@ builder.Services.AddAuthentication()
     {
         opt.RequireHttpsMetadata = false;
         opt.Authority = "https://localhost:7169";
-        opt.TokenValidationParameters.ValidateAudience = false;
+        opt.Audience = "library_api";
     });
 
 builder.Services.AddAuthorization(options =>

@@ -12,23 +12,21 @@ namespace OAuth.Configuration
           new List<IdentityResource>
           {
               new IdentityResources.OpenId(),
-              new IdentityResources.Profile(),
-              new IdentityResource("roles", "User role(s)", new List<string> { "role" }),
-              new IdentityResource("scopes", "User scope(s)", new List<string> { "scope" })
+              new IdentityResources.Profile()
           };
 
         public static IEnumerable<ApiScope> GetApiScopes() =>
-           new List<ApiScope> { 
-               new ApiScope("library_api", "Library API Scope")
-               {
-                   
-               }
+           new List<ApiScope> {
+               new ApiScope("library_api", "Read API Scope")
            };
 
         public static IEnumerable<ApiResource> GetApiResources() =>
             new List<ApiResource>
             {
-                new ApiResource("library_api", "Library API")
+               new ApiResource("library_api", "Library API")
+               {
+                   Scopes = { "library_api" }
+               }
             };
 
         public static IEnumerable<Client> GetClients() =>
@@ -37,7 +35,7 @@ namespace OAuth.Configuration
                new Client
                {
                     ClientId = "web_app",
-                    ClientSecrets = new [] { new Secret("lenkie_secret".Sha512()) },
+                    ClientSecrets = new [] { new Secret("client_secret".Sha512()) },
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
                     AllowedScopes = { StandardScopes.OpenId, "library_api" },
                }
