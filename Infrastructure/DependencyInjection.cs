@@ -23,7 +23,7 @@ namespace Infrastructure
             services.AddScoped<UnitOfWork>();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(DependencyInjection)));
             services.AddDbContext<DatabaseContext>(cfg => cfg.UseSqlServer(configuration.GetConnectionString("Database")));
-            services.AddIdentity<User, IdentityRole<Guid>>()
+            services.AddIdentityCore<User>()
                 .AddEntityFrameworkStores<DatabaseContext>()
                 .AddDefaultTokenProviders();
         }
