@@ -7,7 +7,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Policies.PublicSecure)]
     public class ValuesController : ControllerBase
     {
         [HttpGet("auth")]

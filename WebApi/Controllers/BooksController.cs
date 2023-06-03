@@ -16,6 +16,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policies.PublicSecure)]
     public class BooksController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -32,7 +33,6 @@ namespace WebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(PagedList<Book>), 200)]
-        [Authorize(Scopes.ReadBooks)]
         public async Task<IActionResult> GetBooks([FromQuery] GetBooksQuery query)
         {
             var result = await _mediator.Send(query);
@@ -45,7 +45,6 @@ namespace WebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id:long}")]
-        [Authorize(Scopes.ReadBooks)]
         [ProducesResponseType(typeof(Book), 200)]
         [ProducesResponseType(typeof(Error), 404)]
         public async Task<IActionResult> GetBook(long id)
@@ -70,7 +69,6 @@ namespace WebApi.Controllers
         [HttpPut("{id:long}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(typeof(Error), 400)]
-        [Authorize(Scopes.WriteBooks)]
         public async Task<IActionResult> UpdateBook(long id, UpdateBookRequest request)
         {
             var command = new UpdateBookCommand(id, request);
@@ -87,7 +85,6 @@ namespace WebApi.Controllers
         [HttpPost("")]
         [ProducesResponseType(typeof(Book), 200)]
         [ProducesResponseType(typeof(Error), 400)]
-        [Authorize(Scopes.WriteBooks)]
         public async Task<IActionResult> CreateBook(CreateBookCommand request)
         {
             var result = await _mediator.Send(request);
@@ -103,7 +100,6 @@ namespace WebApi.Controllers
         [HttpPost("{id:long}/check-out")]
         [ProducesResponseType(204)]
         [ProducesResponseType(typeof(Error), 400)]
-        [Authorize(Scopes.ReadBooks)]
         public async Task<IActionResult> CheckOut(CheckOutBookRequest request)
         {
             var command = new CheckOutBookCommand(User.Identity.Name, request);
@@ -121,7 +117,6 @@ namespace WebApi.Controllers
         [HttpPost("{id:long}/check-in")]
         [ProducesResponseType(204)]
         [ProducesResponseType(typeof(Error), 400)]
-        [Authorize(Scopes.ReadBooks)]
         public async Task<IActionResult> CheckIn(CheckInBookCommand request)
         {
             var result = await _mediator.Send(request);

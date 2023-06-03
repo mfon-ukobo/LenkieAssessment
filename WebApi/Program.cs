@@ -25,10 +25,7 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy(Scopes.ReadBooks, policy => policy.Requirements.Add(new HasScopeRequirement(Scopes.ReadBooks)));
-    options.AddPolicy(Scopes.WriteBooks, policy => policy.Requirements.Add(new HasScopeRequirement(Scopes.WriteBooks)));
-    options.AddPolicy(Scopes.ReadUsers, policy => policy.Requirements.Add(new HasScopeRequirement(Scopes.ReadUsers)));
-    options.AddPolicy(Scopes.WriteUsers, policy => policy.Requirements.Add(new HasScopeRequirement(Scopes.WriteUsers)));
+    options.AddPolicy(Policies.PublicSecure, policy => policy.RequireClaim("client_id"));
 });
 
 var app = builder.Build();

@@ -12,6 +12,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policies.PublicSecure)]
     public class ReservationsController : ControllerBase
     {
         private readonly IMediator _mediator;
