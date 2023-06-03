@@ -10,6 +10,8 @@ namespace Domain.Enums
     {
         Available = 0,
         Reserved = 1,
-        CheckedOut = 2
+        CheckedOut = 2,
+        InActive = 3,
+        Deleted = 4
     }
 }

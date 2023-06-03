@@ -29,7 +29,7 @@ namespace Infrastructure.Features.Books.CheckInBook
         public async Task<Result> Handle(CheckInBookCommand request, CancellationToken cancellationToken)
         {
             var book = await _unitOfWork.Book.GetFirstAsync(book => book.Id == request.BookId);
-            book.Makeavailable();
+            book.MakeAvailable();
 
             var checkOut = await _unitOfWork.CheckOut
                 .Where(x => x.CheckInDate == null && x.BookId == book.Id)

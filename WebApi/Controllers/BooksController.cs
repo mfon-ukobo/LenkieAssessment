@@ -17,7 +17,7 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Scopes.ReadBooks)]
     public class BooksController : ControllerBase
     {
         private readonly IMediator _mediator;

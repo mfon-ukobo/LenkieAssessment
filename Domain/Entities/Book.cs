@@ -26,7 +26,7 @@ namespace Domain.Entities
             Status = BookStatus.CheckedOut;
         }
 
-        public void Makeavailable()
+        public void MakeAvailable()
         {
             Status = BookStatus.Available;
         }

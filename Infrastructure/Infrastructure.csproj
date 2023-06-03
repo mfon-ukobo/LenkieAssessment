@@ -24,6 +24,7 @@
   <ItemGroup>
     <Folder Include="Features\Books\CheckInBook\" />
     <Folder Include="Features\Books\DeleteBook\" />
+    <Folder Include="Features\Users\" />
   </ItemGroup>
 
 </Project>
