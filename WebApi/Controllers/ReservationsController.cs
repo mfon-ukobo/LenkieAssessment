@@ -24,6 +24,22 @@ namespace WebApi.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Creates a reservation
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>A newly created reservation</returns>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     POST /Reservations
+        ///     {
+        ///        "bookId": 1
+        ///     }
+        ///
+        /// </remarks>
+        /// <response code="200">Returns the newly created reservation</response>
+        /// <response code="400">If the book is not available</response>
         [HttpPost]
         [ProducesResponseType(typeof(Reservation), 200)]
         [ProducesResponseType(typeof(Error), 400)]
@@ -35,9 +51,20 @@ namespace WebApi.Controllers
             return result.Handle<IActionResult>(Ok, BadRequest);
         }
 
+        /// <summary>
+        /// Get reservations
+        /// </summary>
+        /// <remarks>
+        /// Sample Request
+        ///     
+        ///     GET /Reservations?page=1?size=20
+        ///     
+        /// </remarks>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <response code="200">Returns a list of reservations for the current user</response>
         [HttpGet]
         [ProducesResponseType(typeof(PagedList<Reservation>), 200)]
-        [ProducesResponseType(typeof(Error), 400)]
         public async Task<IActionResult> GetReservations([FromQuery] GetReservationsRequest request)
         {
             var query = new GetReservationsQuery(request);

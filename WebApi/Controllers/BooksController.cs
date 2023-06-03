@@ -30,6 +30,12 @@ namespace WebApi.Controllers
         /// <summary>
         /// Gets a list of books according to the query filters provided
         /// </summary>
+        /// <remarks>
+        /// Sample Request
+        /// 
+        ///     GET /Books?page=1&size=20
+        ///     
+        /// </remarks>
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
@@ -43,6 +49,11 @@ namespace WebApi.Controllers
         /// <summary>
         /// Gets a book with the provided Id
         /// </summary>
+        /// <remarks>
+        /// Sample Request
+        /// 
+        ///     GET /Books/1
+        /// </remarks>
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id:long}")]
@@ -64,6 +75,16 @@ namespace WebApi.Controllers
         /// <summary>
         /// Update a book with the parameters provided
         /// </summary>
+        /// <remarks>
+        /// Sample Request
+        /// 
+        ///     PUT /Books/1 
+        ///     {
+        ///         title: "book 1",
+        ///         description: "Description of book 1",
+        ///         status: "available"
+        ///     }
+        /// </remarks>
         /// <param name="id"></param>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -82,6 +103,15 @@ namespace WebApi.Controllers
         /// <summary>
         /// Creates a book
         /// </summary>
+        /// <remarks>
+        /// Sample Request
+        /// 
+        ///     POST /Books/1 
+        ///     {
+        ///         title: "book 1",
+        ///         description: "Description of book 1",
+        ///     }
+        /// </remarks>
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("")]
@@ -98,6 +128,15 @@ namespace WebApi.Controllers
         /// <summary>
         /// Checks Out a Book
         /// </summary>
+        /// <remarks>
+        /// Sample Request
+        /// 
+        ///     POST /Books/1/Check-Out
+        ///     {
+        ///         bookId: 1,
+        ///         checkInDate: 2022-05-01
+        ///     }
+        /// </remarks>
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("{id:long}/check-out")]
@@ -115,9 +154,17 @@ namespace WebApi.Controllers
         /// <summary>
         /// Checks In a book
         /// </summary>
+        /// <remarks>
+        /// Sample Request
+        ///     
+        ///     POST /Books/Check-In
+        ///     {
+        ///         bookId: 1
+        ///     }
+        /// </remarks>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPost("{id:long}/check-in")]
+        [HttpPost("check-in")]
         [ProducesResponseType(204)]
         [ProducesResponseType(typeof(Error), 400)]
         public async Task<IActionResult> CheckIn(CheckInBookCommand request)
