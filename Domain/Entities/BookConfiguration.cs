@@ -18,6 +18,12 @@ namespace Domain.Entities
 
             builder.Property(x => x.Status)
                 .HasDefaultValue(BookStatus.Available);
+
+            builder.HasOne(x => x.Author)
+                .WithMany()
+                .HasForeignKey(x => x.AuthorId);
+
+            builder.Navigation(x => x.Author).AutoInclude();
         }
     }
 }

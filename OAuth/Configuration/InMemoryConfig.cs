@@ -18,10 +18,7 @@ namespace OAuth.Configuration
 
         public static IEnumerable<ApiScope> GetApiScopes() =>
            new List<ApiScope> {
-               new ApiScope(Scopes.ReadBooks, "Read Books"),
-               new ApiScope(Scopes.WriteBooks, "Create, Update & Delete Books"),
-               new ApiScope(Scopes.ReadUsers, "Read Users"),
-               new ApiScope(Scopes.WriteUsers, "Create, Update & Delete Users"),
+               new ApiScope("libraryApi")
            };
 
         public static IEnumerable<ApiResource> GetApiResources() =>
@@ -29,7 +26,7 @@ namespace OAuth.Configuration
             {
                new ApiResource("library_api", "Library API")
                {
-                   Scopes = { Scopes.ReadBooks, Scopes.WriteBooks, Scopes.ReadUsers, Scopes.WriteUsers }
+                   Scopes = { "libraryApi" }
                }
             };
 
@@ -40,8 +37,10 @@ namespace OAuth.Configuration
                {
                     ClientId = "web_app",
                     ClientSecrets = new [] { new Secret("client_secret".Sha512()) },
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                    AllowedScopes = { StandardScopes.OpenId, Scopes.ReadBooks, Scopes.WriteBooks, Scopes.ReadUsers, Scopes.WriteUsers },
+                    AllowedGrantTypes = GrantTypes.Code,
+                    AllowedScopes = { StandardScopes.OpenId, StandardScopes.Profile, "libraryApi" },
+                    AllowedCorsOrigins = {"http://localhost:4200"},
+                    RedirectUris = { "http://localhost:4200/signin-callback" }
                }
             };
     }

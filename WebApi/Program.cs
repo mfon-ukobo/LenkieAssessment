@@ -3,8 +3,12 @@ using Domain.Entities;
 using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using System.ComponentModel;
 using System.Reflection;
 using WebApi;
 using WebApi.Authorization;
@@ -14,7 +18,11 @@ IdentityModelEventSource.ShowPII = true;
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(opt =>
+    {
+        opt.SerializerSettings.Converters.Add(new StringEnumConverter());
+    });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -62,9 +70,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(opt =>
+{
+    opt.AllowAnyOrigin();
+});
+
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers().RequireAuthorization(Policies.PublicSecure);
+app.MapControllers();
 
 app.Run();
