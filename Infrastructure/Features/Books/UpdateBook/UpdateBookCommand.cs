@@ -40,7 +40,8 @@ namespace Infrastructure.Features.Books.UpdateBook
 
             book.Title = request.Payload.Title;
             book.Description = request.Payload.Description;
-            book.Status = request.Payload.Status;
+            book.ImageUrl = request.Payload.ImageUrl;
+            book.AuthorId = request.Payload.AuthorId;
 
             _unitOfWork.Book.Update(book);
 

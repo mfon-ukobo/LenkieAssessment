@@ -14,6 +14,9 @@ namespace Domain.Entities
     {
         public string Title { get; set; } = default!;
         public string Description { get; set; } = default!;
+        public string ImageUrl { get; set; } = string.Empty;
+        public long AuthorId { get; set; }
+        public Author Author { get; set; }
         public BookStatus Status { get; set; }
 
         public void Reserve()

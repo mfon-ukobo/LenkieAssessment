@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Infrastructure.Common;
 using Infrastructure.Features.Customers.CreateCustomer;
+using Infrastructure.Features.Customers.GetCustomerCheckouts;
 using Infrastructure.Features.Customers.GetCustomers;
 using Infrastructure.Features.Customers.UpdateCustomer;
 using MediatR;
@@ -93,6 +94,18 @@ namespace WebApi.Controllers
             var command = new UpdateCustomerCommand(id, request);
             var result = await _mediator.Send(command);
             return result.Handle<IActionResult>(NoContent, BadRequest);
+        }
+
+        /// <summary>
+        /// Gets a customer's check outs
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id:guid}/check-outs")]
+        public async Task<IActionResult> GetCustomerCheckOuts(Guid id)
+        {
+            var query = new GetCustomerCheckoutsQuery(id);
+            return Ok(await _mediator.Send(query));
         }
     }
 }

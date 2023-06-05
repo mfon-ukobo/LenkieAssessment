@@ -139,12 +139,13 @@ namespace WebApi.Controllers
         /// </remarks>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPost("{id:long}/check-out")]
+        [HttpPost("check-out")]
         [ProducesResponseType(204)]
         [ProducesResponseType(typeof(Error), 400)]
+        [Authorize(Scopes.WriteBooks)]
         public async Task<IActionResult> CheckOut(CheckOutBookRequest request)
         {
-            var command = new CheckOutBookCommand(User.Identity.Name, request);
+            var command = new CheckOutBookCommand(request);
             var result = await _mediator.Send(command);
 
             return result.Handle<IActionResult>(NoContent, BadRequest);
@@ -167,6 +168,7 @@ namespace WebApi.Controllers
         [HttpPost("check-in")]
         [ProducesResponseType(204)]
         [ProducesResponseType(typeof(Error), 400)]
+        [Authorize(Scopes.WriteBooks)]
         public async Task<IActionResult> CheckIn(CheckInBookCommand request)
         {
             var result = await _mediator.Send(request);

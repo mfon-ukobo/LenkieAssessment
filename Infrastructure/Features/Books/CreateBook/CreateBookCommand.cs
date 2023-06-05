@@ -17,6 +17,8 @@ namespace Infrastructure.Features.Books.CreateBook
     {
         public string Title { get; set; } = default!;
         public string Description { get; set; }
+        public long AuthorId { get; set; }
+        public string ImageUrl { get; set; }
     }
 
     internal sealed class CreateBookCommandHandler : ICommandHandler<CreateBookCommand, Result<Book>>
@@ -34,6 +36,8 @@ namespace Infrastructure.Features.Books.CreateBook
             {
                 Title = request.Title,
                 Description = request.Description,
+                AuthorId = request.AuthorId,
+                ImageUrl = "",
                 Status = BookStatus.Available
             };
 

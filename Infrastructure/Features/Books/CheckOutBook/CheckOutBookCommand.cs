@@ -12,13 +12,11 @@ namespace Infrastructure.Features.Books.CheckOutBook
 {
     public class CheckOutBookCommand : ICommand<Result>
     {
-        public CheckOutBookCommand(string userName, CheckOutBookRequest payload)
+        public CheckOutBookCommand(CheckOutBookRequest payload)
         {
-            UserName = userName;
             Payload = payload;
         }
 
-        public string UserName { get; set; }
         public CheckOutBookRequest Payload { get; set; }
     }
 
@@ -35,7 +33,7 @@ namespace Infrastructure.Features.Books.CheckOutBook
 
         public async Task<Result> Handle(CheckOutBookCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.FindByNameAsync(request.UserName);
+            var user = await _userManager.FindByIdAsync(request.Payload.CustomerId.ToString());
             var book = await _unitOfWork.Book.GetFirstAsync(book => book.Id == request.Payload.BookId);
 
             if (book.Status == BookStatus.CheckedOut)

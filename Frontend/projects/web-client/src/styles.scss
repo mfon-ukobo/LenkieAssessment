@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+
+}
+
+.page-header {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+
+  & .page-title {
+    @apply text-3xl font-bold leading-tight tracking-tight text-gray-900
+  }
+}
+
+

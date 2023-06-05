@@ -11,6 +11,7 @@ namespace Infrastructure.Features.Books.UpdateBook
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public BookStatus Status { get; set; }
+        public long AuthorId { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

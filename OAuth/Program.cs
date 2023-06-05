@@ -5,11 +5,11 @@ using OAuth.Configuration;
 using OAuth.Database;
 using Infrastructure;
 using OAuth.Services;
+using IdentityServerHost.Quickstart.UI;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<IdentityContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 
@@ -24,8 +24,9 @@ builder.Services.AddIdentityServer()
     .AddInMemoryClients(InMemoryConfig.GetClients())
     .AddAspNetIdentity<User>()
     .AddProfileService<ProfileService>()
-    .AddJwtBearerClientAuthentication()
     .AddDeveloperSigningCredential(); //not something we want to use in a production environment;
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -35,14 +36,14 @@ if (!app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseIdentityServer();
-
-app.UseHttpsRedirection();
-
+app.UseStaticFiles();
 app.UseRouting();
+
+//app.UseHttpsRedirection();
+app.UseIdentityServer();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapDefaultControllerRoute();
 
 app.Run();

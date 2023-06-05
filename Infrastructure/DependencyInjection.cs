@@ -24,8 +24,9 @@ namespace Infrastructure
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(DependencyInjection)));
             services.AddDbContext<DatabaseContext>(cfg => cfg.UseSqlServer(configuration.GetConnectionString("Database")));
             services.AddIdentityCore<User>()
-                .AddEntityFrameworkStores<DatabaseContext>()
-                .AddDefaultTokenProviders();
+                .AddRoles<IdentityRole<Guid>>()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<DatabaseContext>();
         }
     }
 }

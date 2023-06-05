@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Enums;
 using Infrastructure.Common;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,9 @@ namespace Infrastructure.Features.Books.GetBooks
         public async Task<PagedList<Book>> Handle(GetBooksQuery request, CancellationToken cancellationToken)
         {
             var books = _unitOfWork.Book
-                .Where(BookHasStatus(request.Status)) 
-                .Where(BookTitleContains(request.Search));
+                .Where(BookHasStatus(request.Status))
+                .Where(BookTitleContains(request.Search))
+                .Include(x => x.Author);
 
             return await books.ToPagedListAsync(request);
         }
