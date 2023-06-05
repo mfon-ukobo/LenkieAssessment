@@ -52,34 +52,16 @@ The package used is MediatR. I chose it because of the ease of use, clean contro
 - The Check In and Check Out endpoints also require `read:books` permission
 
 ## Running the software
+### Running the Backend
 1. Execute the SQL script named Database.sql. It will create a database called `Lenkie`
 2. Run both the `WebApi` and `OAuth` projects
-3. An admin user has already been seeded
+3. An admin and customer user has already been seeded. You can control the permissions from the User claims table in the database. Possible values are
+`read:books`, `write:books`, `read:users`, `write:users`
 
-### Athorization
-To authorize a request make a post request to the oauth application url at `https://localhost:7169/connect/token`. Send the parameters
-	
-```json
-{
-	"client_id": "{clientID}"
-	"client_secret": "{clientSECRET}"
-	"grant_type": "password"
-	"username": "{username}"
-	"password": "{password}"
-}
+### Running the frontend
+The authorization has been setup on the Client UI. Run the angular project by opening a terminal and navigting to the `frontend` folder from the repository root. 
+Copy and paste the command below in the terminal
+
+```cmd
+ng serve WebClient -o
 ```
-
-
-and you will get a success resopnse like:
-
-
-```json
-{
-	"access_token": "",
-	"expires_in": "",
-	"token_type": "",
-	"scope": ""
-}
-```
-
-An example postman export has been added.
