@@ -73,6 +73,8 @@ app.UseHttpsRedirection();
 app.UseCors(opt =>
 {
     opt.AllowAnyOrigin();
+    opt.AllowAnyHeader();
+    opt.WithMethods("GET", "POST", "PUT");
 });
 
 app.UseAuthentication();

@@ -1,0 +1,40 @@
+<div class="min-h-full" *ngIf="isAuthenticated; else notAuthenticated">
+  <app-nav></app-nav>
+
+  <main class="mx-auto max-w-7xl px-8 pb-24">
+    <div class="">
+      <img src="/assets/banner.png" alt="" class="mx-auto">
+    </div>
+    <div class="bg-gray-100 p-10 rounded-lg">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
+
+<ng-template #notAuthenticated>
+  <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl">
+          <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+            <div class="sm:flex sm:items-start">
+              <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                <div class="">
+                  <img src="/assets/banner.png" alt="">
+                </div>
+                <div class="mt-2">
+                  <p class="text-xl text-gray-500">OOPS! Seems you are not logged in. Click on the button below to continue</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-50 px-4 py-3">
+            <button (click)="signIn()" type="button" class="w-full justify-center rounded-md bg-rose-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-rose-950 sm:ml-3 sm:w-auto">Login to Martha's Library</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

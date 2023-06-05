@@ -29,7 +29,7 @@ export class AuthService {
       redirect_uri: `${ApiConfig.clientRoot}/signin-callback`,
       scope: 'openid profile libraryApi',
       response_type: 'code',
-      post_logout_redirect_uri: `${ApiConfig.clientRoot}/signout-callback`,
+      post_logout_redirect_uri: `${ApiConfig.clientRoot}`,
       userStore: new WebStorageStateStore({ store: window.localStorage }),
       stateStore: new WebStorageStateStore({ store: window.localStorage }),
       monitorSession: false
@@ -53,14 +53,30 @@ export class AuthService {
     });
   }
 
-  isAuthenticated = (): Promise<boolean> => {
+  isAuthenticated(): Promise<boolean> {
     return this.userManager.getUser().then((user) => {
       this.user = user as User;
       return this.checkUser(user);
     });
   };
 
+  getAccessToken(): Promise<string | null> {
+    return this.userManager.getUser()
+      .then(user => {
+         return !!user && !user.expired ? user.access_token : null;
+    })
+  }
+
   private checkUser = (user: User | null): boolean => {
+    console.log(user);
     return !!user && !user.expired;
   };
+
+  signOut() {
+    this.userManager.signoutRedirect()
+      .then(() => {
+        this.userManager.removeUser();
+        this.loginChanged$.next(false);
+      });
+  }
 }

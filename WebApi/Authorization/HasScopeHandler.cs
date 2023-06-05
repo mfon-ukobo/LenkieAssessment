@@ -6,7 +6,6 @@ namespace WebApi.Authorization
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, HasScopeRequirement requirement)
         {
-            context.Succeed(requirement);
             // If user does not have the scope claim, get out of here
             if (!context.User.HasClaim(c => c.Type == "permissions"))
                 return Task.CompletedTask;

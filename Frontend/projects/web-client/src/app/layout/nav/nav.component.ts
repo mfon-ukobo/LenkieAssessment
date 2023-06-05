@@ -17,7 +17,7 @@ export class NavComponent {
       .then(val => this.isLoggedIn = val);
   }
 
-  signIn() {
-    this.auth.login();
+  signOut() {
+    this.auth.signOut();
   }
 }

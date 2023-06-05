@@ -40,7 +40,8 @@ namespace OAuth.Configuration
                     AllowedGrantTypes = GrantTypes.Code,
                     AllowedScopes = { StandardScopes.OpenId, StandardScopes.Profile, "libraryApi" },
                     AllowedCorsOrigins = {"http://localhost:4200"},
-                    RedirectUris = { "http://localhost:4200/signin-callback" }
+                    RedirectUris = { "http://localhost:4200/signin-callback", "http://localhost:4200" },
+                    PostLogoutRedirectUris = {"http://localhost:4200"}
                }
             };
     }

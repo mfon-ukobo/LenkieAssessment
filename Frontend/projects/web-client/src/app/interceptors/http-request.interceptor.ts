@@ -3,32 +3,30 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpHeaders
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, from, switchMap } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from 'projects/core/src/lib/services/auth.service';
+import { ApiConfig } from '../../api.config';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
 
-  private BASE_URL = "https://localhost:7212/api";
-  private AUTH_URL = "https://localhost:7169";
+  constructor(private authService: AuthService) {}
 
-  constructor(private cookieService: CookieService) {}
-
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-
-    const clientToken = this.cookieService.get('X-Client-Access-Token');
-    const userToken = this.cookieService.get('X-User-Access-Token');
-
-    if (!userToken) {
-
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if(req.url.startsWith(ApiConfig.baseUrl)){
+      return from(this.authService.getAccessToken())
+        .pipe(switchMap(token => {
+          const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+          const authRequest = req.clone({ headers });
+          return next.handle(authRequest);
+        }));
     }
-
-    const clone = request.clone({
-      withCredentials: false
-    });
-
-    return next.handle(clone);
+    else {
+      return next.handle(req);
+    }
   }
 }

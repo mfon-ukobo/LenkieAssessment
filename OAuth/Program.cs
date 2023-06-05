@@ -22,9 +22,8 @@ builder.Services.AddIdentityServer()
     .AddInMemoryApiScopes(InMemoryConfig.GetApiScopes())
     .AddInMemoryApiResources(InMemoryConfig.GetApiResources())
     .AddInMemoryClients(InMemoryConfig.GetClients())
-    .AddTestUsers(TestUsers.Users)
-    //.AddAspNetIdentity<User>()
-    //.AddProfileService<ProfileService>()
+    .AddAspNetIdentity<User>()
+    .AddProfileService<ProfileService>()
     .AddDeveloperSigningCredential(); //not something we want to use in a production environment;
 
 builder.Services.AddControllersWithViews();

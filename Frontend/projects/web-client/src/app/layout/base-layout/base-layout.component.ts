@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'projects/core/src/lib/services/auth.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-base-layout',
+  templateUrl: './base-layout.component.html',
+  styleUrls: ['./base-layout.component.scss']
 })
-export class AppComponent {
-  title = 'WebClient';
+export class BaseLayoutComponent {
   isAuthenticated!: boolean;
 
   constructor(private auth: AuthService, private route: ActivatedRoute) {

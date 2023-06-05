@@ -21,4 +21,12 @@ export class BookService {
   getBook(id: number): Observable<Book> {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
+
+  checkOut(model: any): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/check-out`, model);
+  }
+
+  checkIn(model: any): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/check-in`, model);
+  }
 }

@@ -21,5 +21,11 @@ namespace Infrastructure.Database
         public DbSet<NotificationRequest> NotificationRequests => Set<NotificationRequest>();
         public DbSet<CheckOut> CheckOuts => Set<CheckOut>();
         public DbSet<Notification> Notifications => Set<Notification>();
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(typeof(BookConfiguration).Assembly);
+            base.OnModelCreating(builder);
+        }
     }
 }
