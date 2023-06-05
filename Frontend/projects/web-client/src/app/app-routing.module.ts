@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from './layout/base-layout/base-layout.component';
+import { PermissionGuard } from './guards/permission.guard';
+import { UserPermissions } from 'projects/core/src/lib/enums/permissions';
 
 const routes: Routes = [
   {
@@ -26,6 +28,10 @@ const routes: Routes = [
       },
       {
         path: 'check-out/:id',
+        data: {
+          permissions: [UserPermissions.writeBooks, UserPermissions.writeUsers]
+        },
+        canActivate: [PermissionGuard],
         loadChildren: () =>
           import('./pages/check-out/check-out.module').then(
             (m) => m.CheckOutModule
@@ -33,6 +39,10 @@ const routes: Routes = [
       },
       {
         path: 'users',
+        data: {
+          permissions: [UserPermissions.readUsers]
+        },
+        canActivate: [PermissionGuard],
         loadChildren: () =>
           import('./pages/users/users.module').then((m) => m.UsersModule),
       },

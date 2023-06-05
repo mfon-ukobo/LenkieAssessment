@@ -1,22 +1,23 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Author } from 'projects/core/src/lib/interfaces/author';
+import { Book } from 'projects/core/src/lib/interfaces/book';
 import { PagedList } from 'projects/core/src/lib/interfaces/paged-list';
 import { AuthorService } from 'projects/core/src/lib/services/author.service';
 import { BookService } from 'projects/core/src/lib/services/book.service';
 import { NotificationService } from '../../../services/notification.service';
 
 @Component({
-  selector: 'app-create-book',
-  templateUrl: './create-book.component.html',
-  styleUrls: ['./create-book.component.scss']
+  selector: 'app-edit-book',
+  templateUrl: './edit-book.component.html',
+  styleUrls: ['./edit-book.component.scss']
 })
-export class CreateBookComponent {
-
+export class EditBookComponent {
   pagedAuthors: PagedList<Author> = {} as PagedList<Author>;
+  book: Book = {} as Book;
 
-  constructor(private fb: FormBuilder, private bookService: BookService, private router: Router, private authorService: AuthorService, private notificationService: NotificationService) {
+  constructor(private fb: FormBuilder, private bookService: BookService, private router: Router, private authorService: AuthorService, private route: ActivatedRoute, private notificationService: NotificationService) {
 
   }
 
@@ -28,6 +29,10 @@ export class CreateBookComponent {
 
   ngOnInit() {
     this.getAuthors();
+    this.route.data.subscribe((data) => {
+      this.book = data['book'];
+      this.form.patchValue(this.book);
+    });
   }
 
   getAuthors() {
@@ -37,12 +42,11 @@ export class CreateBookComponent {
       });
   }
 
-  createBook() {
+  editBook() {
     if (this.form.valid) {
-      this.bookService.createBook(this.form.value)
+      this.bookService.updateBook(this.book.id, this.form.value)
         .subscribe(data => {
-          this.notificationService.success('Created Successfully');
-          this.router.navigate(['../']);
+          this.notificationService.success('Update Successful');
         });
     }
   }

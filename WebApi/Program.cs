@@ -4,6 +4,7 @@ using Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.Extensions.Azure;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
@@ -51,7 +52,11 @@ builder.Services.AddAuthentication()
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy(Policies.PublicSecure, policy => policy.RequireClaim("client_id"));
-    options.AddPolicy(Scopes.ReadBooks, policy => policy.AddRequirements(new HasScopeRequirement(Scopes.ReadBooks)));
+    options.AddPolicy(Scopes.ReadBooks, policy =>
+    {
+        policy.RequireRole("Customer", "Admin");
+        policy.AddRequirements(new HasScopeRequirement(Scopes.ReadBooks));
+    });
     options.AddPolicy(Scopes.WriteBooks, policy => policy.Requirements.Add(new HasScopeRequirement(Scopes.WriteBooks)));
     options.AddPolicy(Scopes.ReadUsers, policy => policy.Requirements.Add(new HasScopeRequirement(Scopes.ReadUsers)));
     options.AddPolicy(Scopes.WriteUsers, policy => policy.Requirements.Add(new HasScopeRequirement(Scopes.WriteUsers)));

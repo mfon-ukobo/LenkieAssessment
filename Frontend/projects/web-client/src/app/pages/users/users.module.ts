@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 
 @NgModule({
   declarations: [
-    UsersComponent
+    UsersComponent,
+    CreateUserComponent
   ],
   imports: [
     CommonModule,

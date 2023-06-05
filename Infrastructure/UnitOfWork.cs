@@ -23,6 +23,7 @@ namespace Infrastructure
             NotificationRequest = new Repository<NotificationRequest>(context);
             CheckOut = new Repository<CheckOut>(context);
             Notification = new Repository<Notification>(context);
+            Author = new Repository<Author>(context);
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -35,5 +36,6 @@ namespace Infrastructure
         public IRepository<NotificationRequest> NotificationRequest;
         public IRepository<CheckOut> CheckOut;
         public IRepository<Notification> Notification;
+        public IRepository<Author> Author;
     }
 }

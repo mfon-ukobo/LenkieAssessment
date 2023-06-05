@@ -1,8 +1,8 @@
+import { UserPermissions } from 'projects/core/src/lib/enums/permissions';
 import { MenuItem } from './menu-item';
 
 export const MENU: MenuItem[] = [
-  { label: 'Books', routerLink: ['/books'], permissions: ['read:books'] },
-  { label: 'Add User', routerLink: ['/users/create'], permissions: ['write:users'] },
-  { label: 'User', routerLink: ['/users'], permissions: ['read:users'] },
-  { label: 'Reservations', routerLink: ['/reservations'], permissions: ['read:users'] },
+  { label: 'Books', routerLink: ['/books'], permissions: [UserPermissions.readBooks] },
+  { label: 'Users', routerLink: ['/users'], permissions: [UserPermissions.readUsers] },
+  { label: 'Reservations', routerLink: ['/reservations'], permissions: [UserPermissions.readUsers, UserPermissions.readBooks] },
 ];

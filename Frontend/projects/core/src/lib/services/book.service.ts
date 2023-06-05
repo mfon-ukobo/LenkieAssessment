@@ -22,6 +22,14 @@ export class BookService {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
+  createBook(book: any): Observable<Book> {
+    return this.http.post<any>(`${this.baseUrl}`, book);
+  }
+
+  updateBook(id: number, book: any): Observable<void> {
+    return this.http.put<any>(`${this.baseUrl}/${id}`, book);
+  }
+
   checkOut(model: any): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/check-out`, model);
   }

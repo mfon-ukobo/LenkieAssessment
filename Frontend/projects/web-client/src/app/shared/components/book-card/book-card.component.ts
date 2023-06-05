@@ -3,6 +3,7 @@ import { BookStatus } from 'projects/core/src/lib/enums/book-status';
 import { Book } from 'projects/core/src/lib/interfaces/book';
 import { ReservationService } from 'projects/core/src/lib/services/reservation.service';
 import { NotificationService } from '../../../services/notification.service';
+import { UserPermissions } from 'projects/core/src/lib/enums/permissions';
 
 @Component({
   selector: 'app-book-card',
@@ -12,6 +13,7 @@ import { NotificationService } from '../../../services/notification.service';
 export class BookCardComponent {
   @Input() book!: Book;
   bookStatus = BookStatus;
+  userPermissions = UserPermissions;
 
   constructor(private reservationService: ReservationService, private notificationService: NotificationService) {
 

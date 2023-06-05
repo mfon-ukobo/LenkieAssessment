@@ -4,6 +4,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { RouterModule } from '@angular/router';
 import { HasPermissionsPipe } from './pipes/has-permissions.pipe';
+import { CreateAuthorComponent } from './components/create-author/create-author.component';
 
 const DECLARATIONS = [
   BookCardComponent,
@@ -15,6 +16,7 @@ const DECLARATIONS = [
 @NgModule({
   declarations: [
     ...DECLARATIONS,
+    CreateAuthorComponent,
   ],
   imports: [
     CommonModule,
