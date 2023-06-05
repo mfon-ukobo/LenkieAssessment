@@ -1,6 +1,7 @@
 ﻿using Application.Mediator;
 using Domain.Entities;
 using Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,15 +26,18 @@ namespace Infrastructure.Features.Reservations.CreateReservation
     internal sealed class CreateReservationCommandHandler : ICommandHandler<CreateReservationCommand, Result<Reservation>>
     {
         private readonly UnitOfWork _unitOfWork;
+        private readonly UserManager<User> _userManager;
         private const int RESERVATION_DURATION_DAYS = 2;
 
-        public CreateReservationCommandHandler(UnitOfWork unitOfWork)
+        public CreateReservationCommandHandler(UnitOfWork unitOfWork, UserManager<User> userManager)
         {
             _unitOfWork = unitOfWork;
+            _userManager = userManager;
         }
 
         public async Task<Result<Reservation>> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
+            var user = await _userManager.FindByNameAsync(request.UserName);
             var book = await _unitOfWork.Book.GetFirstAsync(x => x.Id == request.Payload.BookId);
             if (book.Status == BookStatus.CheckedOut)
             {
@@ -48,7 +52,7 @@ namespace Infrastructure.Features.Reservations.CreateReservation
             var reservation = new Reservation
             {
                 BookId = request.Payload.BookId,
-                CustomerId = Guid.NewGuid(),
+                CustomerId = user.Id,
                 ReservationDate = DateTime.UtcNow,
                 ReservationEndDate = DateTime.UtcNow.AddDays(RESERVATION_DURATION_DAYS)
             };

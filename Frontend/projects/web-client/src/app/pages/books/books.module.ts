@@ -6,12 +6,14 @@ import { BooksComponent } from './books.component';
 import { SharedModule } from '../../shared/shared.module';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { FormsModule } from '@angular/forms';
+import { CreateBookComponent } from './create-book/create-book.component';
 
 
 @NgModule({
   declarations: [
     BooksComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    CreateBookComponent
   ],
   imports: [
     CommonModule,

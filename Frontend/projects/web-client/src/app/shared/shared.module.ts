@@ -3,16 +3,18 @@ import { CommonModule } from '@angular/common';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { RouterModule } from '@angular/router';
+import { HasPermissionsPipe } from './pipes/has-permissions.pipe';
 
 const DECLARATIONS = [
   BookCardComponent,
-  TruncatePipe
+  TruncatePipe,
+  HasPermissionsPipe
 ]
 
 
 @NgModule({
   declarations: [
-    ...DECLARATIONS
+    ...DECLARATIONS,
   ],
   imports: [
     CommonModule,

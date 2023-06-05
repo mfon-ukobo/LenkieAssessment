@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'projects/core/src/lib/services/auth.service';
 import { MENU } from '../menu';
+import { MenuService } from '../../services/menu.service';
+import { MenuItem } from '../menu-item';
 
 @Component({
   selector: 'app-nav',
@@ -10,11 +12,17 @@ import { MENU } from '../menu';
 export class NavComponent {
 
   isLoggedIn!: boolean;
-  menu = MENU;
+  menu:MenuItem[] = [];
 
-  constructor(private auth: AuthService) {
-    auth.isAuthenticated()
+  constructor(private auth: AuthService, private menuService: MenuService) {
+
+  }
+
+  ngOnInit() {
+    this.auth.isAuthenticated()
       .then(val => this.isLoggedIn = val);
+
+    this.menu = this.menuService.getUserMenu();
   }
 
   signOut() {

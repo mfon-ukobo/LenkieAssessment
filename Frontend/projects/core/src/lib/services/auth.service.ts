@@ -68,7 +68,6 @@ export class AuthService {
   }
 
   private checkUser = (user: User | null): boolean => {
-    console.log(user);
     return !!user && !user.expired;
   };
 
@@ -78,5 +77,17 @@ export class AuthService {
         this.userManager.removeUser();
         this.loginChanged$.next(false);
       });
+  }
+
+  hasPermissions(permissions: string[]): boolean {
+    const userPermissions = this.user.profile['permissions'] as string[];
+    let permissionNotMet = permissions.filter(x => !userPermissions.includes(x));
+    console.log(permissionNotMet);
+
+    if (!permissionNotMet || !permissionNotMet.length) {
+      return true;
+    }
+
+    return false;
   }
 }
